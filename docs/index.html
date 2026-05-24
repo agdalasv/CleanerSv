@@ -190,15 +190,36 @@
         <div class="container">
             <div class="text-center mb-5">
                 <h2 class="section-title">Capturas de Pantalla</h2>
-                <p class="section-sub">Pr&oacute;ximamente: capturas del dashboard, limpieza y registro</p>
+                <p class="section-sub">Haz clic en una imagen para ampliarla</p>
             </div>
-            <div class="row justify-content-center">
-                <div class="col-md-6 text-center">
-                    <img src="../logo.png" alt="Cleaner Sv Logo" class="img-fluid" style="max-height: 300px;">
+            <div class="row g-3" id="galleryGrid">
+                <div class="col-6 col-md-3">
+                    <img src="../img/1.png" alt="Screenshot 1" class="img-fluid rounded-3 gallery-thumb" data-bs-toggle="modal" data-bs-target="#galleryModal" data-img="../img/1.png" style="cursor:pointer;">
+                </div>
+                <div class="col-6 col-md-3">
+                    <img src="../img/2.png" alt="Screenshot 2" class="img-fluid rounded-3 gallery-thumb" data-bs-toggle="modal" data-bs-target="#galleryModal" data-img="../img/2.png" style="cursor:pointer;">
+                </div>
+                <div class="col-6 col-md-3">
+                    <img src="../img/3.png" alt="Screenshot 3" class="img-fluid rounded-3 gallery-thumb" data-bs-toggle="modal" data-bs-target="#galleryModal" data-img="../img/3.png" style="cursor:pointer;">
+                </div>
+                <div class="col-6 col-md-3">
+                    <img src="../img/4.png" alt="Screenshot 4" class="img-fluid rounded-3 gallery-thumb" data-bs-toggle="modal" data-bs-target="#galleryModal" data-img="../img/4.png" style="cursor:pointer;">
                 </div>
             </div>
         </div>
     </section>
+
+    <!-- Gallery Modal -->
+    <div class="modal fade" id="galleryModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-xl modal-dialog-centered">
+            <div class="modal-content bg-transparent border-0">
+                <div class="modal-body p-0 text-center">
+                    <button type="button" class="btn-close btn-close-white position-absolute top-0 end-0 m-3" data-bs-dismiss="modal" aria-label="Cerrar" style="z-index:10;"></button>
+                    <img src="" id="galleryModalImg" class="img-fluid rounded-3 shadow" style="max-height:90vh;">
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- Tech -->
     <section id="tech" class="tech-section py-5">
@@ -272,13 +293,19 @@
                     <i class="bi bi-github me-2"></i>Ver en GitHub
                 </a>
             </div>
+            <div class="mt-4">
+                <p class="text-white-50 mb-1"><i class="bi bi-cup-hot me-1"></i>Invita un caf&eacute;:</p>
+                <code class="bg-dark text-warning px-3 py-2 rounded-3 d-inline-block" id="btcWallet" style="font-size:0.85rem;cursor:pointer;" onclick="navigator.clipboard.writeText('3L8f3v6BWwL7KBcb8AMZQ2bpE3ACne2EUf');alert('BTC wallet copiada!');">3L8f3v6BWwL7KBcb8AMZQ2bpE3ACne2EUf</code>
+                <span class="text-white-50 ms-2 small"><i class="bi bi-clipboard"></i> clic para copiar</span>
+            </div>
         </div>
     </section>
 
     <!-- Footer -->
     <footer class="footer py-4">
         <div class="container text-center">
-            <p class="mb-1">&copy; 2026 <strong>Agdala</strong> &mdash; Todos los derechos reservados</p>
+            <p class="mb-1">Todos los derechos reservados &copy; 2026</p>
+            <p class="mb-1"><strong>Powered by Agdala</strong> 🇸🇻</p>
             <p class="mb-0">
                 <a href="mailto:agdala.sv@gmail.com" class="text-white-50 text-decoration-none">
                     <i class="bi bi-envelope me-1"></i>agdala.sv@gmail.com

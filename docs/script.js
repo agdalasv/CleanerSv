@@ -101,10 +101,21 @@ function initTyping() {
     setTimeout(type, 500);
 }
 
+/* ===== Gallery Lightbox ===== */
+function initGallery() {
+    const modalImg = document.getElementById('galleryModalImg');
+    document.querySelectorAll('.gallery-thumb').forEach(thumb => {
+        thumb.addEventListener('click', () => {
+            modalImg.src = thumb.getAttribute('data-img');
+        });
+    });
+}
+
 /* ===== Init ===== */
 document.addEventListener('DOMContentLoaded', () => {
     animateCounters();
     initReveal();
     initHeroParallax();
     initTyping();
+    initGallery();
 });

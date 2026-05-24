@@ -376,6 +376,20 @@ body {
     margin-top: 4px;
 }
 
+/* ===== Gallery Thumbnails ===== */
+.gallery-thumb {
+    transition: all 0.3s;
+    border: 2px solid var(--border);
+}
+.gallery-thumb:hover {
+    transform: scale(1.05);
+    border-color: var(--accent);
+    box-shadow: 0 8px 30px rgba(0,120,212,0.2);
+}
+
+/* Gallery Modal */
+.modal-backdrop { background: rgba(0,0,0,0.85); }
+
 /* ===== Footer ===== */
 .footer {
     background: var(--primary);
