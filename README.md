@@ -96,6 +96,6 @@ Si te gusta el proyecto, apóyame con una donación en BTC:
 ---
 
 <div align="center">
-  <strong>Cleaner Sv</strong> — Todos los derechos reservados 🇸🇻<br>
+  <strong>Cleaner Sv</strong> — Todos los derechos reservados <br>
   Powered by <strong>Agdala</strong> &copy; 2026
 </div>
