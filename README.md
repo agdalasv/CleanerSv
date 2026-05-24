@@ -1,12 +1,8 @@
-<<<<<<< HEAD
-# CleanerSv
-Cleaner Sv es una herramienta de optimización para Windows 11 desarrollada en WPF/.NET 8 que permite limpiar archivos basura, optimizar RAM, reparar el registro, desfragmentar discos, monitorear CPU/RAM/disco/temperatura, gestionar aplicaciones y crear backups del sistema, todo con una interfaz Fluent Design con modo oscuro/claro.
-=======
 # Cleaner Sv
 
 **Cleaner Sv** es una aplicación nativa para Windows 11 (64-bit) diseñada para optimizar, limpiar, reparar y monitorear el rendimiento del sistema operativo. Desarrollada con **WPF (.NET 8)** y una interfaz visual moderna inspirada en **Fluent Design**.
 
-![Dashboard](Cleaner/1.png)
+![Cleaner Sv](logo.png)
 
 ---
 
@@ -116,37 +112,9 @@ También puedes descargar el ejecutable portable desde la sección de Releases.
 
 ---
 
-## Capturas de Pantalla
-
-| Dashboard | Limpieza | Registro |
-|---|---|---|
-| ![Dashboard](Cleaner/1.png) | ![Limpieza](Cleaner/2.png) | ![Registro](Cleaner/3.png) |
-
----
-
-## Desarrollo
-
-```bash
-# Clonar el repositorio
-git clone https://github.com/agdalasv/CleanerSv.git
-
-# Restaurar dependencias
-cd CleanerSv/Cleaner
-dotnet restore
-
-# Compilar
-dotnet build -c Release
-
-# Generar instalador
-cd ../Cleaner.Installer
-.\build.ps1
-```
-
----
-
 ## Licencia
 
-Este proyecto está bajo la licencia MIT. Consulta el archivo `LICENSE` para más detalles.
+Este proyecto está bajo la licencia MIT.
 
 ---
 
@@ -155,4 +123,3 @@ Este proyecto está bajo la licencia MIT. Consulta el archivo `LICENSE` para má
 **Agdala**  
 📧 agdala.sv@gmail.com  
 🌐 [github.com/agdalasv](https://github.com/agdalasv)
->>>>>>> 2f7704c (Initial commit: Cleaner Sv full app + docs site)
