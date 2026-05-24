@@ -1,0 +1,102 @@
+<Page x:Class="Cleaner.Views.BackupPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      mc:Ignorable="d" d:DesignHeight="800" d:DesignWidth="1000"
+      Background="{DynamicResource WindowBackground}">
+
+    <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
+        <StackPanel Margin="30">
+            <TextBlock Text="Backup y Restauración" FontSize="28" FontWeight="SemiBold"
+                       Foreground="{DynamicResource TextPrimary}"/>
+            <TextBlock Text="Protege tu sistema con respaldos automáticos" FontSize="14"
+                       Foreground="{DynamicResource TextSecondary}" Margin="0,4,0,20"/>
+
+            <!-- Stats -->
+            <Grid Margin="0,0,0,20">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Border Grid.Column="0" Background="{DynamicResource CardBackground}"
+                        BorderBrush="{DynamicResource CardBorder}" BorderThickness="1"
+                        CornerRadius="14" Padding="20">
+                    <StackPanel>
+                        <TextBlock Text="🛡️" FontSize="28"/>
+                        <TextBlock Text="Último Backup" FontSize="12" Foreground="{DynamicResource TextSecondary}"
+                                   Margin="0,8,0,2"/>
+                        <TextBlock Text="{Binding LastBackup}" FontSize="16" FontWeight="Bold"
+                                   Foreground="{DynamicResource TextPrimary}"/>
+                    </StackPanel>
+                </Border>
+                <Border Grid.Column="1" Background="{DynamicResource CardBackground}"
+                        BorderBrush="{DynamicResource CardBorder}" BorderThickness="1"
+                        CornerRadius="14" Padding="20" Margin="15,0,0,0">
+                    <StackPanel>
+                        <TextBlock Text="📦" FontSize="28"/>
+                        <TextBlock Text="Respaldos Realizados" FontSize="12"
+                                   Foreground="{DynamicResource TextSecondary}" Margin="0,8,0,2"/>
+                        <TextBlock Text="{Binding BackupCount}" FontSize="28" FontWeight="Bold"
+                                   Foreground="{DynamicResource TextPrimary}"/>
+                    </StackPanel>
+                </Border>
+                <Border Grid.Column="2" Background="{DynamicResource CardBackground}"
+                        BorderBrush="{DynamicResource CardBorder}" BorderThickness="1"
+                        CornerRadius="14" Padding="20" Margin="15,0,0,0">
+                    <StackPanel>
+                        <TextBlock Text="📋" FontSize="28"/>
+                        <TextBlock Text="Estado" FontSize="12" Foreground="{DynamicResource TextSecondary}"
+                                   Margin="0,8,0,2"/>
+                        <TextBlock Text="{Binding StatusMessage}" FontSize="12" FontWeight="Medium"
+                                   Foreground="{DynamicResource HealthGreen}" TextWrapping="Wrap"/>
+                    </StackPanel>
+                </Border>
+            </Grid>
+
+            <!-- Actions -->
+            <Border Background="{DynamicResource CardBackground}"
+                    BorderBrush="{DynamicResource CardBorder}" BorderThickness="1"
+                    CornerRadius="14" Padding="20" Margin="0,0,0,20">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                    <Button Content="🔄 Crear Punto de Restauración" Command="{Binding CreateRestorePointCommand}"
+                            Style="{StaticResource ActionButton}"
+                            Background="{DynamicResource AccentColor}" Foreground="White"
+                            Padding="20,12" Margin="0,0,15,0"/>
+                    <Button Grid.Column="1" Content="💾 Respaldar Registro" Command="{Binding BackupRegistryCommand}"
+                            Style="{StaticResource ActionButton}"
+                            Background="#FF9800" Foreground="White"
+                            Padding="20,12"/>
+                </Grid>
+            </Border>
+
+            <!-- History -->
+            <Border Background="{DynamicResource CardBackground}"
+                    BorderBrush="{DynamicResource CardBorder}" BorderThickness="1"
+                    CornerRadius="14" Padding="5">
+                <StackPanel>
+                    <TextBlock Text="Historial de Respaldos" FontSize="16" FontWeight="SemiBold"
+                               Foreground="{DynamicResource TextPrimary}" Margin="15,10"/>
+                    <ItemsControl ItemsSource="{Binding Backups}" Margin="0,5,0,10">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <Border Background="{DynamicResource WindowBackground}"
+                                        CornerRadius="8" Margin="10,3" Padding="12,10">
+                                    <StackPanel>
+                                        <TextBlock Text="{Binding}" FontSize="13"
+                                                   Foreground="{DynamicResource TextPrimary}"/>
+                                    </StackPanel>
+                                </Border>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </StackPanel>
+            </Border>
+        </StackPanel>
+    </ScrollViewer>
+</Page>

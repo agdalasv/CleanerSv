@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://wixtoolset.org/schemas/v4/wxs"
+     xmlns:ui="http://wixtoolset.org/schemas/v4/wxs/ui">
+  <Package
+    Name="Cleaner Sv"
+    Manufacturer="Agdala"
+    Version="1.0.0"
+    UpgradeCode="12345678-1234-1234-1234-123456789abc"
+    Scope="perMachine">
+
+    <MajorUpgrade DowngradeErrorMessage="A newer version of Cleaner Sv is already installed." />
+
+    <Icon Id="AppIcon" SourceFile="$(var.ProjectDir)logo.ico" />
+    <Property Id="ARPPRODUCTICON" Value="AppIcon" />
+
+    <WixVariable Id="WixUILicenseRtf" Value="$(var.InstallerDir)license.rtf" />
+
+    <UI>
+      <ui:WixUI Id="WixUI_InstallDir" />
+    </UI>
+
+    <UIRef Id="WixUI_Common" />
+
+    <StandardDirectory Id="ProgramFiles6432Folder">
+      <Directory Id="INSTALLFOLDER" Name="Cleaner Sv">
+        <Component Id="MainFiles" Guid="87654321-4321-4321-4321-210987654321">
+          <File Id="CleanerExe" Source="$(var.PublishDir)Cleaner.exe" Vital="true" />
+          <File Id="CleanerDll" Source="$(var.PublishDir)Cleaner.dll" Vital="true" />
+          <File Id="CleanerRuntimeConfig" Source="$(var.PublishDir)Cleaner.runtimeconfig.json" Vital="true" />
+          <File Id="CleanerDeps" Source="$(var.PublishDir)Cleaner.deps.json" />
+          <File Id="CleanerPdb" Source="$(var.PublishDir)Cleaner.pdb" />
+          <File Id="HarfBuzzSharp" Source="$(var.PublishDir)HarfBuzzSharp.dll" />
+          <File Id="libHarfBuzzSharp" Source="$(var.PublishDir)libHarfBuzzSharp.dll" />
+          <File Id="libSkiaSharp" Source="$(var.PublishDir)libSkiaSharp.dll" />
+          <File Id="LiveChartsCore" Source="$(var.PublishDir)LiveChartsCore.dll" />
+          <File Id="LiveChartsCoreSkiaSharp" Source="$(var.PublishDir)LiveChartsCore.SkiaSharpView.dll" />
+          <File Id="LiveChartsCoreSkiaSharpWPF" Source="$(var.PublishDir)LiveChartsCore.SkiaSharpView.WPF.dll" />
+          <File Id="MicrosoftWindowsAPICodePack" Source="$(var.PublishDir)Microsoft.WindowsAPICodePack.dll" />
+          <File Id="MicrosoftWindowsAPICodePackShell" Source="$(var.PublishDir)Microsoft.WindowsAPICodePack.Shell.dll" />
+          <File Id="SkiaSharp" Source="$(var.PublishDir)SkiaSharp.dll" />
+          <File Id="SkiaSharpHarfBuzz" Source="$(var.PublishDir)SkiaSharp.HarfBuzz.dll" />
+          <File Id="SkiaSharpViewsDesktopCommon" Source="$(var.PublishDir)SkiaSharp.Views.Desktop.Common.dll" />
+          <File Id="SkiaSharpViewsWPF" Source="$(var.PublishDir)SkiaSharp.Views.WPF.dll" />
+          <File Id="SystemCodeDom" Source="$(var.PublishDir)System.CodeDom.dll" />
+          <File Id="SystemManagement" Source="$(var.PublishDir)System.Management.dll" />
+          <File Id="LogoIco" Source="$(var.ProjectDir)logo.ico" />
+          <File Id="BtcTxt" Source="$(var.ProjectDir)btc.txt" />
+          <RemoveFile Id="CrashLog" Name="CleanerCrash.txt" On="uninstall" />
+        </Component>
+      </Directory>
+    </StandardDirectory>
+
+    <StandardDirectory Id="DesktopFolder">
+      <Component Id="DesktopShortcut" Guid="b1234567-1234-1234-1234-123456789abc">
+        <Shortcut Id="DesktopCleanerSv" Name="Cleaner Sv"
+                  Target="[INSTALLFOLDER]Cleaner.exe" WorkingDirectory="INSTALLFOLDER"
+                  Icon="AppIcon" />
+        <RegistryValue Root="HKCU" Key="Software\Agdala\CleanerSv"
+                       Name="desktop_shortcut" Type="integer" Value="1" KeyPath="yes" />
+      </Component>
+    </StandardDirectory>
+
+    <StandardDirectory Id="ProgramMenuFolder">
+      <Directory Id="CleanerSvProgramMenuDir" Name="Cleaner Sv">
+        <Component Id="StartMenuShortcut" Guid="c1234567-1234-1234-1234-123456789abc">
+          <Shortcut Id="StartMenuCleanerSv" Name="Cleaner Sv"
+                    Target="[INSTALLFOLDER]Cleaner.exe" WorkingDirectory="INSTALLFOLDER"
+                    Icon="AppIcon" />
+          <Shortcut Id="UninstallShortcut" Name="Desinstalar Cleaner Sv"
+                    Target="[System64Folder]msiexec.exe"
+                    Arguments="/x [ProductCode]" />
+          <RegistryValue Root="HKCU" Key="Software\Agdala\CleanerSv"
+                         Name="startmenu_shortcut" Type="integer" Value="1" KeyPath="yes" />
+        </Component>
+      </Directory>
+    </StandardDirectory>
+
+    <Feature Id="Complete" Level="1">
+      <ComponentRef Id="MainFiles" />
+      <ComponentRef Id="DesktopShortcut" />
+      <ComponentRef Id="StartMenuShortcut" />
+    </Feature>
+  </Package>
+</Wix>

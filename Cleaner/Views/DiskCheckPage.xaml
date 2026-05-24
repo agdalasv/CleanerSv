@@ -1,0 +1,125 @@
+<Page x:Class="Cleaner.Views.DiskCheckPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      mc:Ignorable="d" d:DesignHeight="800" d:DesignWidth="1000"
+      Background="{DynamicResource WindowBackground}">
+
+    <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
+        <StackPanel Margin="30">
+            <TextBlock Text="Chequeo de Disco" FontSize="28" FontWeight="SemiBold"
+                       Foreground="{DynamicResource TextPrimary}"/>
+            <TextBlock Text="Diagnostica y repara errores del disco" FontSize="14"
+                       Foreground="{DynamicResource TextSecondary}" Margin="0,4,0,20"/>
+
+            <Grid Margin="0,0,0,20">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="15"/>
+                </Grid.RowDefinitions>
+
+                <!-- Health Card -->
+                <Border Grid.Row="0" Grid.Column="0" Background="{DynamicResource CardBackground}"
+                        BorderBrush="{DynamicResource CardBorder}" BorderThickness="1"
+                        CornerRadius="16" Padding="25">
+                    <StackPanel>
+                        <TextBlock Text="Salud del Disco" FontSize="16" FontWeight="SemiBold"
+                                   Foreground="{DynamicResource TextPrimary}" Margin="0,0,0,12"/>
+                        <Grid Height="100">
+                            <Ellipse Stroke="{DynamicResource CardBorder}" StrokeThickness="8" Width="100" Height="100"
+                                     HorizontalAlignment="Center"/>
+                            <Ellipse Stroke="{DynamicResource HealthGreen}" StrokeThickness="8" Width="100" Height="100"
+                                     StrokeDashArray="282.7" StrokeDashOffset="14.1"
+                                     HorizontalAlignment="Center"
+                                     RenderTransformOrigin="0.5,0.5">
+                                <Ellipse.RenderTransform>
+                                    <RotateTransform Angle="-90"/>
+                                </Ellipse.RenderTransform>
+                            </Ellipse>
+                            <TextBlock Text="{Binding HealthPercent, StringFormat='{}{0}%'}" FontSize="22" FontWeight="Bold"
+                                       Foreground="{DynamicResource TextPrimary}" HorizontalAlignment="Center"
+                                       VerticalAlignment="Center"/>
+                        </Grid>
+                        <TextBlock Text="{Binding DiskHealth}" FontSize="14" FontWeight="Medium"
+                                   Foreground="{DynamicResource HealthGreen}" HorizontalAlignment="Center"
+                                   Margin="0,8,0,0"/>
+                    </StackPanel>
+                </Border>
+
+                <!-- SMART Data -->
+                <Border Grid.Row="0" Grid.Column="1" Background="{DynamicResource CardBackground}"
+                        BorderBrush="{DynamicResource CardBorder}" BorderThickness="1"
+                        CornerRadius="16" Padding="25" Margin="15,0,0,0">
+                    <StackPanel>
+                        <TextBlock Text="Datos SMART" FontSize="16" FontWeight="SemiBold"
+                                   Foreground="{DynamicResource TextPrimary}" Margin="0,0,0,12"/>
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <StackPanel Grid.Row="0" Grid.Column="0" Margin="0,0,10,10">
+                                <TextBlock Text="Modelo" FontSize="11" Foreground="{DynamicResource TextSecondary}"/>
+                                <TextBlock Text="{Binding DiskModel}" FontSize="13" FontWeight="Medium"
+                                           Foreground="{DynamicResource TextPrimary}"/>
+                            </StackPanel>
+                            <StackPanel Grid.Row="0" Grid.Column="1" Margin="10,0,0,10">
+                                <TextBlock Text="Temperatura" FontSize="11" Foreground="{DynamicResource TextSecondary}"/>
+                                <TextBlock Text="{Binding Temperature}" FontSize="13" FontWeight="Medium"
+                                           Foreground="{DynamicResource TextPrimary}"/>
+                            </StackPanel>
+                            <StackPanel Grid.Row="1" Grid.Column="0" Margin="0,0,10,0">
+                                <TextBlock Text="Sectores Dañados" FontSize="11" Foreground="{DynamicResource TextSecondary}"/>
+                                <TextBlock Text="{Binding BadSectors}" FontSize="13" FontWeight="Medium"
+                                           Foreground="{DynamicResource TextPrimary}"/>
+                            </StackPanel>
+                            <StackPanel Grid.Row="1" Grid.Column="1" Margin="10,0,0,0">
+                                <TextBlock Text="Vida Útil SSD" FontSize="11" Foreground="{DynamicResource TextSecondary}"/>
+                                <TextBlock Text="{Binding Lifetime}" FontSize="13" FontWeight="Medium"
+                                           Foreground="{DynamicResource TextPrimary}"/>
+                            </StackPanel>
+                        </Grid>
+                    </StackPanel>
+                </Border>
+            </Grid>
+
+            <!-- Actions -->
+            <Border Background="{DynamicResource CardBackground}"
+                    BorderBrush="{DynamicResource CardBorder}" BorderThickness="1"
+                    CornerRadius="14" Padding="20">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                    <StackPanel>
+                        <TextBlock Text="Estado" FontSize="12" Foreground="{DynamicResource TextSecondary}"/>
+                        <TextBlock Text="{Binding StatusMessage}" FontSize="13" Foreground="{DynamicResource TextPrimary}"/>
+                    </StackPanel>
+                    <Button Grid.Column="2" Content="🔍 Escanear" Command="{Binding ScanCommand}"
+                            Style="{StaticResource ActionButton}"
+                            Background="{DynamicResource AccentColor}" Foreground="White"
+                            Padding="20,10" Margin="0,0,10,0"/>
+                    <Button Grid.Column="3" Content="🔧 Reparar" Command="{Binding RepairCommand}"
+                            Style="{StaticResource ActionButton}"
+                            Background="#FF9800" Foreground="White"
+                            Padding="20,10"/>
+                </Grid>
+            </Border>
+        </StackPanel>
+    </ScrollViewer>
+</Page>
